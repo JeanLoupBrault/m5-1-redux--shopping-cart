@@ -3,9 +3,8 @@ import styled from 'styled-components';
 
 import Logo from './Logo';
 import ItemGrid from './ItemGrid';
-import GlobalStyles from './GlobalStyles';
 import Cart from './Cart';
-// import CartItem from './CartItem';
+import GlobalStyles from './GlobalStyles';
 
 const App = () => {
   return (
@@ -19,6 +18,7 @@ const App = () => {
       <CartWrapper>
         <Cart />
       </CartWrapper>
+
       <GlobalStyles />
     </Wrapper>
   );

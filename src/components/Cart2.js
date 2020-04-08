@@ -1,25 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { getItemArray } from '../reducers';
-import { getSubtotal } from '../reducers';
-import { formatPriceForHumans } from '../helpers';
 
 import CartItem from './CartItem';
+import { formatPriceForHumans } from '../helpers';
+import { getSubtotal } from '../reducers/index_with-immer';
+import { getStoreItemsArray } from '../reducers';
 import Button from './Button';
 
 const Cart = () => {
-  const items = useSelector(getItemArray);
+  const items = useSelector(getStoreItemsArray);
   const subtotal = useSelector(getSubtotal);
+
 
   return (
     <Wrapper>
       <Top>
-        <Title>Your Cart</Title>
+        <Title>Your Cart !!!</Title>
         <Subtitle>
           {items.length} {items.length === 1 ? 'Item' : 'Items'}
         </Subtitle>
-
         <ItemList>
           {items.map((item) => (
             <CartItem key={item.id} item={item} />
@@ -50,6 +50,26 @@ const Wrapper = styled.section`
   justify-content: space-between;
 `;
 
+const Title = styled.h2`
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 0;
+`;
+
+const ItemList = styled.ul`
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0;
+  padding-top: 32px;
+`;
+
+const Total = styled.div`
+  font-size: 22px;
+`;
+
 const Top = styled.div`
   max-height: calc(100vh - 240px);
   overflow: auto;
@@ -65,13 +85,6 @@ const Bottom = styled.div`
   padding-right: 32px;
 `;
 
-const Title = styled.h2`
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 0;
-`;
-
 const Subtitle = styled.p`
   margin: 0;
   margin-top: 8px;
@@ -79,16 +92,4 @@ const Subtitle = styled.p`
   opacity: 0.75;
 `;
 
-const ItemList = styled.ul`
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 0;
-  padding-top: 32px;
-`;
-
-const Total = styled.div`
-  font-size: 22px;
-`;
 export default Cart;

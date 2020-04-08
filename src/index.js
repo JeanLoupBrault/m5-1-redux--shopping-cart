@@ -10,8 +10,8 @@ import App from './components/App';
 // const store = createStore(reducer, devToolsEnhancer());
 
 const store = createStore(
-    reducer,
-    window._REDUX_DEVTOOLS_EXTENSIONS_ && window._REDUX_DEVTOOLS_EXTENSIONS_()
+    reducer, /* preloadedState, */
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 const rootElement = document.getElementById('root');

@@ -3,14 +3,13 @@ import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { Icon } from 'react-icons-kit';
 import { x } from 'react-icons-kit/feather/x';
-
 import { updateQuantity, removeItem } from '../actions';
 
 import UnstyledButton from './UnstyledButton';
 
+
 const CartItem = ({ item }) => {
-  // console.log('item', item);
-  const itemQuantity = useSelector((state) => state[item.id].quantity);
+  const itemQuantity = useSelector((state) => state.items[item.id].quantity);
   const dispatch = useDispatch();
 
   return (
@@ -28,7 +27,7 @@ const CartItem = ({ item }) => {
           onChange={(ev) => dispatch(updateQuantity(item.id, ev.target.value))}
         />
       </Body>
-    </Wrapper>
+    </Wrapper >
   );
 };
 
@@ -73,3 +72,5 @@ const TextInput = styled.input`
 `;
 
 export default CartItem;
+
+

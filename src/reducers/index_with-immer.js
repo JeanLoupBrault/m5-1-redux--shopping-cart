@@ -45,9 +45,14 @@ export default function cartReducer(state = initialState, action) {
     }
 }
 
-export const getItemArray = state => Object.values(state.items);
-export const getSubtotal = state =>
-    getItemArray(state).reduce(
-        (acc, item) => acc + item.price * item.quantity,
-        0
-    );
+export const getItemArray = (state) => Object.values(state.items);
+export const getSubtotal = (state) =>
+    console.log('state', state);
+getItemArray(state).reduce(
+    (acc, item) => {
+        console.log('acc', acc);
+        console.log('item', item);
+        acc + item.price * item.quantity
+    },
+    0
+);

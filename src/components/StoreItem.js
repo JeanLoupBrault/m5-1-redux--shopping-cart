@@ -1,5 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+
+import { addItem } from '../actions';
 
 import Button from './Button';
 
@@ -9,13 +12,17 @@ const StoreItem = ({ id, title, src, price }) => {
     currency: 'USD',
   }).format(price / 100);
 
+  const dispatch = useDispatch();
+
   return (
     <Wrapper>
       <ImageWrapper>
         <Image src={src} alt={`${title} sticker`} />
       </ImageWrapper>
       <Title>{title}</Title>
-      <Button>Add to Cart — {formattedPrice}</Button>
+      <Button onClick={() => dispatch(addItem({ id, title, price }))}>
+        Add to Cart — {formattedPrice}
+      </Button>
     </Wrapper>
   );
 };
@@ -40,6 +47,12 @@ const ImageWrapper = styled.div`
 const Image = styled.img`
   display: block;
   max-width: 100%;
+  transition: transform 400ms;
+  transform-origin: center center;
+
+  &:hover {
+    transform: scale(1.25) rotate(10deg);
+  }
 `;
 
 const Title = styled.h2`
